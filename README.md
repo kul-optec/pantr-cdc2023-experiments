@@ -1,2 +1,3 @@
-# pantr-cdc2023-experiments
-PANTR: A proximal algorithm with regularized Newton updates for nonconvex constrained optimization
+# PANTR: A proximal algorithm with regularized Newton updates for nonconvex constrained optimization
+
+🚧 Work in progress 🚧
