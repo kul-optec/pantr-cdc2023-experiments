@@ -1,0 +1,34 @@
+# Temporary build and cache folders
+build
+.*cache
+__pycache__
+
+# Virtual environments
+py*-venv*
+
+# Python distribution and building
+dist
+dist-debug
+wheelhouse
+python-cross-staging
+*.py-build-cmake.config.toml
+python/alpaqa/_alpaqa*
+/install
+/staging
+/build-local
+/toolchains
+/install-thirdparty
+
+# Compiled or generated files
+*.mod
+*.o
+*.a
+*.so
+a.out
+dynamics.c
+
+# Other files
+*.mp4
+*.nope
+/old
+callgrind.out.*
