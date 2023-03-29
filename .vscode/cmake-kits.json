@@ -1,0 +1,43 @@
+[
+    {
+        "name": "CentOS 7 (x86-64, GCC 12)",
+        "toolchainFile": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/cmake/x86_64-centos7-linux-gnu.toolchain.cmake",
+        "cmakeSettings": {
+            "Eigen3_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/eigen-master/usr/local/share/eigen3/cmake",
+            "casadi_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/casadi/usr/local/lib/cmake/casadi",
+            "GTest_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/googletest/usr/local/lib/cmake/GTest",
+            "OpenBLAS_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/openblas/usr/local/share/cmake/OpenBLAS",
+            "COINMUMPS_LIBRARY": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/mumps/usr/local/lib/libcoinmumps.a",
+            "COINMUMPS_INCLUDE_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/mumps/usr/local/include/coin-or/mumps",
+            "Ipopt_LIBRARY": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/ipopt/usr/local/lib/libipopt.a",
+            "Ipopt_INCLUDE_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/ipopt/usr/local/include/coin-or",
+            "TOOLCHAIN_USE_CLANG": false,
+            "Python3_FIND_VIRTUALENV": "ONLY",
+            "Python3_ROOT_DIR": "${workspaceFolder}/.venv"
+        },
+        "preferredGenerator": {
+            "name": "Ninja Multi-Config"
+        }
+    },
+    {
+        "name": "CentOS 7 (x86-64, Clang 16)",
+        "toolchainFile": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/cmake/x86_64-centos7-linux-gnu.toolchain.cmake",
+        "cmakeSettings": {
+            "Eigen3_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/eigen-master/usr/local/share/eigen3/cmake",
+            "casadi_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/casadi/usr/local/lib/cmake/casadi",
+            "GTest_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/googletest/usr/local/lib/cmake/GTest",
+            "OpenBLAS_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/openblas/usr/local/share/cmake/OpenBLAS",
+            "COINMUMPS_LIBRARY": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/mumps/usr/local/lib/libcoinmumps.a",
+            "COINMUMPS_INCLUDE_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/mumps/usr/local/include/coin-or/mumps",
+            "Ipopt_LIBRARY": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/ipopt/usr/local/lib/libipopt.a",
+            "Ipopt_INCLUDE_DIR": "${workspaceFolder}/toolchains/x86_64-centos7-linux-gnu/ipopt/usr/local/include/coin-or",
+            "TOOLCHAIN_USE_CLANG": true,
+            "TOOLCHAIN_CLANG_SUFFIX": "-16",
+            "Python3_FIND_VIRTUALENV": "ONLY",
+            "Python3_ROOT_DIR": "${workspaceFolder}/.venv"
+        },
+        "preferredGenerator": {
+            "name": "Ninja Multi-Config"
+        }
+    }
+]

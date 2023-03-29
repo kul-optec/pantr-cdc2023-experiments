@@ -1,0 +1,2 @@
+matplotlib~=3.7.0
+opengen~=0.7.1

@@ -1,0 +1,11 @@
+{
+    "cmake.configureEnvironment": {
+        "CFLAGS": "-march=native",
+        "CXXFLAGS": "-march=native",
+    },
+    "cmake.configureSettings": {
+        "CMAKE_C_COMPILER_LAUNCHER": "ccache",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
+        "CMAKE_Fortran_COMPILER_LAUNCHER": "ccache",
+    },
+}
