@@ -1,0 +1,4 @@
+[submodule "alpaqa"]
+	path = alpaqa
+	url = https://github.com/kul-optec/alpaqa
+	branch = pantr
