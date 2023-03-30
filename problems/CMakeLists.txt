@@ -29,7 +29,7 @@ function(generate_casadi_problem problem pythonfile formulation horizon)
 endfunction()
 
 # Compile the CasADi problems
-foreach(N RANGE 1 10 1)
+foreach(N RANGE 1 60 1)
     generate_casadi_problem("quadcopter" "generate_problem.py" "ss2p" ${N})
     generate_casadi_problem("quadcopter" "generate_problem.py" "ss2" ${N})
     generate_casadi_problem("hanging_chain" "generate_problem.py" "ss2p" ${N})

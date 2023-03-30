@@ -13,7 +13,7 @@ problem="$1"; shift;
 formulation="$1"; shift;
 delta="$1"; shift;
 run () { pushd "$output"; set -ex;
-    for i in {$delta..10..$delta}; do
+    for i in {$delta..60..$delta}; do
         /usr/bin/time -f 'max_memory: %M' "$build_dir/benchmark-mpc-driver" "$problem_dir/$problem" $i $formulation method="$solver" num_sim=30 "$@"
     done
     popd
