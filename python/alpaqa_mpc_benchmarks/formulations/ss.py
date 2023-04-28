@@ -8,19 +8,19 @@ from .ocp import OCProblem
 @dataclass
 class SSProblem:
     ocp: OCProblem
-    input_var: cs.MX
+    input_var: cs.SX
     cost: cs.Function
     constr: cs.Function
     C: Tuple[np.ndarray, np.ndarray]
     D: Tuple[np.ndarray, np.ndarray]
     initial_guess: np.ndarray
     initial_state: np.ndarray
-    initial_state_var: cs.MX
+    initial_state_var: cs.SX
 
 def ocp_to_ss(ocp: OCProblem) -> SSProblem:
     # Problem variables
-    u_mat = cs.MX.sym("u", ocp.nu, ocp.N)
-    x0 = cs.MX.sym("x0", ocp.nx)
+    u_mat = cs.SX.sym("u", ocp.nu, ocp.N)
+    x0 = cs.SX.sym("x0", ocp.nx)
     x_mat = ocp.f_dynamics.mapaccum(ocp.N)(x0, u_mat)
     x_mat = cs.horzcat(x0, x_mat)
     xu_mat = cs.vertcat(x_mat[:, :-1], u_mat)
