@@ -8,20 +8,20 @@ from .ocp import OCProblem
 @dataclass
 class MSProblem:
     ocp: OCProblem
-    state_input_var: cs.SX
+    state_input_var: cs.MX
     cost: cs.Function
     constr: cs.Function
     C: Tuple[np.ndarray, np.ndarray]
     D: Tuple[np.ndarray, np.ndarray]
     initial_guess: np.ndarray
     initial_state: np.ndarray
-    initial_state_var: cs.SX
+    initial_state_var: cs.MX
 
 def ocp_to_ms(ocp: OCProblem) -> MSProblem:
     # Problem variables
-    u_mat = cs.SX.sym("u", ocp.nu, ocp.N)
-    x_mat = cs.SX.sym("x", ocp.nx, ocp.N)
-    x0 = cs.SX.sym("x0", ocp.nx)
+    u_mat = cs.MX.sym("u", ocp.nu, ocp.N)
+    x_mat = cs.MX.sym("x", ocp.nx, ocp.N)
+    x0 = cs.MX.sym("x0", ocp.nx)
     x_mat = cs.horzcat(x0, x_mat)
     xu_mat = cs.vertcat(x_mat[:, :-1], u_mat)
     xN = x_mat[:, -1]
@@ -67,9 +67,9 @@ def ocp_to_ms(ocp: OCProblem) -> MSProblem:
 
 def ocp_to_ms_soft(ocp: OCProblem, μ: np.ndarray) -> MSProblem:
     # Problem variables
-    u_mat = cs.SX.sym("u", ocp.nu, ocp.N)
-    x_mat = cs.SX.sym("x", ocp.nx, ocp.N)
-    x0 = cs.SX.sym("x0", ocp.nx)
+    u_mat = cs.MX.sym("u", ocp.nu, ocp.N)
+    x_mat = cs.MX.sym("x", ocp.nx, ocp.N)
+    x0 = cs.MX.sym("x0", ocp.nx)
     x_mat = cs.horzcat(x0, x_mat)
     xu_mat = cs.vertcat(x_mat[:, :-1], u_mat)
     xN = x_mat[:, -1]
