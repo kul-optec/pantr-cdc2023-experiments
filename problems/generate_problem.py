@@ -2,6 +2,7 @@ import importlib
 import alpaqa.casadi_generator as cg
 from sys import argv
 import numpy as np
+import casadi as cs
 
 formulations = {
     "ocp": "no",
@@ -56,17 +57,20 @@ elif formulation in ["ss", "ss2", "ss2p"]:
         g=ss.constr,
         name=name,
         second_order=formulations[formulation],
+        sym=cs.SX.sym,
     ).generate()
     cg.write_casadi_problem_data(
         name + ".so",
         C=ss.C,
         D=ss.D,
         param=ss.initial_state,
+        l1_reg=[],
+        penalty_alm_split=0,
     )
 
-    with open(f"{name}.guess.tsv", "w") as f:
-        np.savetxt(f, [ss.initial_guess], delimiter="\t", newline="\n")
-        np.savetxt(f, [penalty_alm_split], delimiter="\t", newline="\n")
+    with open(f"{name}.guess.csv", "w") as f:
+        np.savetxt(f, [ss.initial_guess], delimiter=",", newline="\n")
+        np.savetxt(f, [penalty_alm_split], delimiter=",", newline="\n")
 elif formulation in ["ms", "ms2", "ms2p"]:
     from alpaqa_mpc_benchmarks.formulations.ms import ocp_to_ms
 
@@ -76,16 +80,19 @@ elif formulation in ["ms", "ms2", "ms2p"]:
         g=ms.constr,
         name=name,
         second_order=formulations[formulation],
+        sym=cs.SX.sym,
     ).generate()
     cg.write_casadi_problem_data(
         name + ".so",
         C=ms.C,
         D=ms.D,
         param=ms.initial_state,
+        l1_reg=[],
+        penalty_alm_split=0,
     )
 
-    with open(f"{name}.guess.tsv", "w") as f:
-        np.savetxt(f, [ms.initial_guess], delimiter="\t", newline="\n")
-        np.savetxt(f, [penalty_alm_split], delimiter="\t", newline="\n")
+    with open(f"{name}.guess.csv", "w") as f:
+        np.savetxt(f, [ms.initial_guess], delimiter=",", newline="\n")
+        np.savetxt(f, [penalty_alm_split], delimiter=",", newline="\n")
 else:
     assert False, "Invalid formulation"
