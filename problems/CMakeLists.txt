@@ -12,7 +12,7 @@ function(generate_casadi_problem problem pythonfile formulation horizon)
                         COMMAND Python3::Interpreter
                         ARGS "${CMAKE_CURRENT_SOURCE_DIR}/${pythonfile}"
                             "${problem}" "${formulation}" "${horizon}"
-                        BYPRODUCTS "${problem_name}.tsv"
+                        BYPRODUCTS "${problem_name}.csv"
                         MAIN_DEPENDENCY "${pythonfile}")
         add_library("${problem_name}" MODULE "${problem_name}.c")
         set_target_properties("${problem_name}" PROPERTIES
@@ -23,7 +23,7 @@ function(generate_casadi_problem problem pythonfile formulation horizon)
                         COMMAND ${CMAKE_COMMAND}
                         ARGS -E copy
                             "${problem_name}.csv"
-                            "${problem_name}.guess.tsv"
+                            "${problem_name}.guess.csv"
                             "$<TARGET_FILE_DIR:${problem_name}>")
     endif()
 endfunction()
@@ -31,7 +31,7 @@ endfunction()
 # Compile the CasADi problems
 foreach(N RANGE 1 60 1)
     generate_casadi_problem("quadcopter" "generate_problem.py" "ss2p" ${N})
-    generate_casadi_problem("quadcopter" "generate_problem.py" "ss2" ${N})
+    # generate_casadi_problem("quadcopter" "generate_problem.py" "ss2" ${N})
     generate_casadi_problem("hanging_chain" "generate_problem.py" "ss2p" ${N})
     # fails to compile (too big)
     # generate_casadi_problem("hanging_chain" "generate_problem.py" "ss2" ${N})

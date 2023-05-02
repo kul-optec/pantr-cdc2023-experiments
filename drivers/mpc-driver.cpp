@@ -107,8 +107,8 @@ auto make_solver(const auto &extra_opts) {
     using ALMSolver = alpaqa::ALMSolver<InnerSolver>;
     typename ALMSolver::Params alm_param;
     alm_param.max_iter       = 200;
-    alm_param.ε              = 1e-8;
-    alm_param.δ              = 1e-8;
+    alm_param.tolerance      = 1e-8;
+    alm_param.dual_tolerance = 1e-8;
     alm_param.print_interval = 0;
     alpaqa::params::set_params(alm_param, "alm", extra_opts);
     return ALMSolver{alm_param, make_inner_solver<InnerSolver>(extra_opts)};

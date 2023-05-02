@@ -40,14 +40,14 @@ if formulation == "ocp":
         c_N=ocp.term_constr,
         name=name,
     ).generate()
-
-    with open(f"{name}.tsv", "w") as f:
-        np.savetxt(f, ocp.input_constr_box, delimiter="\t", newline="\n")
-        np.savetxt(f, ocp.stage_constr_box, delimiter="\t", newline="\n")
-        np.savetxt(f, ocp.term_constr_box, delimiter="\t", newline="\n")
-        np.savetxt(f, [ocp.initial_state], delimiter="\t", newline="\n")
-        np.savetxt(f, [ocp.initial_guess], delimiter="\t", newline="\n")
-        np.savetxt(f, [penalty_alm_split], delimiter="\t", newline="\n")
+    cg.write_casadi_control_problem_data(
+        name + ".so",
+        U=ocp.input_constr_box,
+        D=ocp.stage_constr_box,
+        D_N=ocp.term_constr_box,
+        x_init=ocp.initial_guess,
+        param=[],
+    )
 elif formulation in ["ss", "ss2", "ss2p"]:
     from alpaqa_mpc_benchmarks.formulations.ss import ocp_to_ss
 

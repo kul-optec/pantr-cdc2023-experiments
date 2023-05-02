@@ -3,11 +3,11 @@
 #include <alpaqa/dl/dl-problem.h>
 #include <casadi/casadi.hpp>
 #include <algorithm>
+#include <any>
 #include <cstring>
 #include <span>
 #include <type_traits>
 #include <vector>
-#include <any>
 
 using real_t   = alpaqa_real_t;
 using length_t = alpaqa_length_t;
@@ -106,8 +106,8 @@ class SingleShootingProblem {
         using P                = SingleShootingProblem;
         funcs.n                = n;
         funcs.m                = m;
-        funcs.get_C            = member_caller<&P::get_C>();
-        funcs.get_D            = member_caller<&P::get_D>();
+        funcs.initialize_box_C = member_caller<&P::get_C>();
+        funcs.initialize_box_D = member_caller<&P::get_D>();
         funcs.eval_f           = member_caller<&P::eval_f>();
         funcs.eval_grad_f      = member_caller<&P::eval_grad_f>();
         funcs.eval_g           = member_caller<&P::eval_g>();

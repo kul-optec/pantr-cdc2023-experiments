@@ -1,6 +1,6 @@
 /**
  * @file
- * Loads a compiled CasADi problem and problem values from a .tsv file and
+ * Loads a compiled CasADi problem and problem values from a .csv file and
  * exposes it through a C interface that can be called from other languages.
  */
 
@@ -53,10 +53,10 @@ BenchmarkProblem load_benchmark_casadi_problem(
     auto &cs_problem    = cnt_problem.problem;
 
     // Load numeric data
-    std::ifstream guess{fs::path{full_path}.replace_extension(".guess.tsv")};
+    std::ifstream guess{fs::path{full_path}.replace_extension(".guess.csv")};
     if (!guess)
         throw std::runtime_error("Failed to open guess file");
-    alpaqa::csv::read_row(guess, problem.initial_guess, '\t');
+    alpaqa::csv::read_row(guess, problem.initial_guess);
     guess >> problem.penalty_alm_split;
 
     // Get mutable view of initial state
