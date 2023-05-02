@@ -8,6 +8,7 @@ tools_dir="$PWD/toolchains"
 triple="x86_64-centos7-linux-gnu"
 pfx="$tools_dir/$triple"
 pkg_path="$pfx/eigen-master;$pfx/casadi;$pfx/openblas;$pfx/mumps;$pfx/ipopt;$pfx/pybind11"
+pfx_path="$pfx/ipopt/usr/local"
 
 # Use ccache to cache compilation
 if { which ccache > /dev/null; }; then
@@ -27,6 +28,7 @@ export LDFLAGS="-static-libstdc++"
 cmake -S. -Bbuild \
     --toolchain "$pfx/cmake/$triple.toolchain.cmake" \
     -DCMAKE_FIND_ROOT_PATH="$pkg_path" \
+    -DCMAKE_PREFIX_PATH="$pfx_path" \
     -DBUILD_SHARED_LIBS=Off \
     -DPython3_FIND_VIRTUALENV=ONLY \
     -DPython3_ROOT_DIR="$PWD/.venv" \
@@ -34,5 +36,5 @@ cmake -S. -Bbuild \
     -G "Ninja Multi-Config"
 # Build
 for cfg in Release; do
-    cmake --build build -j --config $cfg
+    cmake --build build -j 16 --config $cfg -- -k0
 done

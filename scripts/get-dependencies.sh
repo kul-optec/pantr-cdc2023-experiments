@@ -4,7 +4,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"/..
 set -ex
 
 # Download compiler and dependencies
-download_url="https://github.com/tttapa/cross-python/releases/download/0.0.11"
+download_url="https://github.com/tttapa/cross-python/releases/download/0.0.16"
 tools_dir="$PWD/toolchains"
 triple="x86_64-centos7-linux-gnu"
 pfx="$tools_dir/$triple"
@@ -12,7 +12,8 @@ mkdir -p "$tools_dir"
 if [ ! -d "$pfx" ]; then
     wget "$download_url/full-$triple.tar.xz" -O- | tar xJ -C "$tools_dir"
 fi
-pkg_path="$pfx/eigen-master;$pfx/casadi;$pfx/openblas;$pfx/mumps;$pfx/ipopt;$pfx/pybind11"
+pkg_path="$pfx/eigen-master;$pfx/casadi;$pfx/ipopt;$pfx/pybind11"
+pfx_path="$pfx/ipopt/usr/local"
 
 # Use ccache to cache compilation
 if { which ccache > /dev/null; }; then
@@ -26,7 +27,7 @@ export FCFLAGS="-march=native"
 export LDFLAGS="-static-libstdc++"
 
 # Create Python virtual environment
-[ -d .venv ] || python3.10 -m venv .venv
+[ -d .venv ] || python3.11 -m venv .venv
 . ./.venv/bin/activate
 pip install -U pip
 
@@ -38,6 +39,7 @@ pushd alpaqa
 cmake -S. -Bbuild \
     --toolchain "$pfx/cmake/$triple.toolchain.cmake" \
     -DCMAKE_FIND_ROOT_PATH="$pkg_path" \
+    -DCMAKE_PREFIX_PATH="$pfx_path" \
     -DCMAKE_POSITION_INDEPENDENT_CODE=On \
     -DBUILD_SHARED_LIBS=Off \
     -DALPAQA_WITH_DRIVERS=On \
@@ -61,6 +63,7 @@ config = ["Release"]
 generator = "Ninja Multi-Config"
 [cmake.options]
 CMAKE_FIND_ROOT_PATH = "$pkg_path"
+CMAKE_PREFIX_PATH = "$pfx_path"
 USE_GLOBAL_PYBIND11 = "On"
 ALPAQA_WITH_OCP = "Off"
 EOF
