@@ -5,6 +5,7 @@
  */
 
 #include <alpaqa/dl/dl-problem.hpp>
+#include <alpaqa/problem/problem-with-counters.hpp>
 #include <alpaqa/util/io/csv.hpp>
 #include <casadi-dll-wrapper.hpp>
 

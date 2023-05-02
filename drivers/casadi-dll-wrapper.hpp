@@ -7,6 +7,7 @@
 #endif
 #include <alpaqa/casadi/CasADiProblem.hpp>
 #include <alpaqa/problem/problem-counters.hpp>
+#include <alpaqa/problem/type-erased-problem.hpp>
 #include <filesystem>
 #include <string_view>
 

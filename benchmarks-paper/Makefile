@@ -47,62 +47,64 @@ all : $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-med-runtimes.pdf \
       $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-med-runtimes.pdf \
       $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-med-runtimes.pdf \
       $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-med-runtimes.pdf \
-      $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-solution.pdf
+      $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-solution.pdf \
+	  $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-avg-runtimes-cold-warm.pdf \
+	  $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-avg-runtimes-cold-warm.pdf
 
 # Quadcopter
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-pantr_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		pantr pantr quadcopter ss2p $(DELTA) \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-gn_ids.txt : run-ocp-mpc-exp.sh
 	./$< $(OUTPUT) \
 		gn panococp quadcopter $(DELTA) \
 		solver.lbfgs_params.memory=50 solver.gn_interval=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-panoc200_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		panoc200 panoc quadcopter ss2p $(DELTA) \
 		accel.memory=200 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-panoc50_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		panoc50 panoc quadcopter ss2p $(DELTA) \
 		accel.memory=50 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-panoc20_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		panoc20 panoc quadcopter ss2p $(DELTA) \
 		accel.memory=20 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-strucpanoc50_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		strucpanoc50 strucpanoc quadcopter ss2p $(DELTA) \
 		accel.memory=50 dir.hessian_vec=0 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-lbfgsb15_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		lbfgsb15 lbfgsb quadcopter ss2p $(DELTA) \
 		solver.memory=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-ipopt-precompiled_ids.txt : run-mpc-exp.sh
@@ -131,56 +133,56 @@ $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-solution.pdf : visualize_mpc_solution.py $(Q
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-pantr_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-pantr pantr quadcopter ss2p $(DELTA) \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-gn_ids.txt : run-ocp-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-gn panococp quadcopter $(DELTA) \
 		solver.lbfgs_params.memory=50 solver.gn_interval=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-panoc200_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-panoc200 panoc quadcopter ss2p $(DELTA) \
 		accel.memory=200 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-panoc50_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-panoc50 panoc quadcopter ss2p $(DELTA) \
 		accel.memory=50 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-panoc20_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-panoc20 panoc quadcopter ss2p $(DELTA) \
 		accel.memory=20 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-strucpanoc50_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-strucpanoc50 strucpanoc quadcopter ss2p $(DELTA) \
 		accel.memory=50 dir.hessian_vec=0 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-lbfgsb15_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-lbfgsb15 lbfgsb quadcopter ss2p $(DELTA) \
 		solver.memory=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e4 solver.max_iter=250 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 num_dist=0
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e4 solver.max_iter=250 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 num_dist=0
 	touch $@
 
 $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-cold-ipopt-precompiled_ids.txt : run-mpc-exp.sh
@@ -216,8 +218,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-quadcopter-avg-runtimes-cold-warm.pdf : perfplot-cold-w
 $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-pantr_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		pantr pantr hanging_chain ss2p $(DELTA) \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -225,8 +227,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-gn_ids.txt : run-ocp-mpc-exp.sh
 	./$< $(OUTPUT) \
 		gn panococp hanging_chain $(DELTA) \
 		solver.lbfgs_params.memory=50 solver.gn_interval=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -234,8 +236,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-panoc200_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		panoc200 panoc hanging_chain ss2p $(DELTA) \
 		accel.memory=200 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -243,8 +245,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-panoc50_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		panoc50 panoc hanging_chain ss2p $(DELTA) \
 		accel.memory=50 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -252,8 +254,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-panoc20_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		panoc20 panoc hanging_chain ss2p $(DELTA) \
 		accel.memory=20 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -261,8 +263,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-strucpanoc50_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		strucpanoc50 strucpanoc hanging_chain ss2p $(DELTA) \
 		accel.memory=50 dir.hessian_vec=0 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -270,8 +272,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-lbfgsb15_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		lbfgsb15 lbfgsb hanging_chain ss2p $(DELTA) \
 		solver.memory=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=1 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=1 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -296,8 +298,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-med-runtimes.pdf : perfplot.py $(HANGING_
 $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-pantr_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-pantr pantr hanging_chain ss2p $(DELTA) \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -305,8 +307,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-gn_ids.txt : run-ocp-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-gn panococp hanging_chain $(DELTA) \
 		solver.lbfgs_params.memory=50 solver.gn_interval=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -314,8 +316,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-panoc200_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-panoc200 panoc hanging_chain ss2p $(DELTA) \
 		accel.memory=200 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -323,8 +325,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-panoc50_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-panoc50 panoc hanging_chain ss2p $(DELTA) \
 		accel.memory=50 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -332,8 +334,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-panoc20_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-panoc20 panoc hanging_chain ss2p $(DELTA) \
 		accel.memory=20 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -341,8 +343,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-strucpanoc50_ids.txt : run-mpc-exp.s
 	./$< $(OUTPUT) \
 		cold-strucpanoc50 strucpanoc hanging_chain ss2p $(DELTA) \
 		accel.memory=50 dir.hessian_vec=0 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
@@ -350,8 +352,8 @@ $(OUTPUT)/mpc-Δ$(DELTA)-hanging_chain-cold-lbfgsb15_ids.txt : run-mpc-exp.sh
 	./$< $(OUTPUT) \
 		cold-lbfgsb15 lbfgsb hanging_chain ss2p $(DELTA) \
 		solver.memory=15 \
-		alm.Δ=5 alm.ρ=0.1 alm.ε_0=1e-1 alm.Σ_0=1e3 \
-		alm.ε=$(TOL) alm.δ=$(TOL) alm.max_time=30s warm=0 \
+		alm.penalty_update_factor=5 alm.tolerance_update_factor=0.1 alm.initial_tolerance=1e-1 alm.initial_penalty=1e3 \
+		alm.tolerance=$(TOL) alm.dual_tolerance=$(TOL) alm.max_time=30s warm=0 \
 		num_dist=5 u_dist=-1,1,1
 	touch $@
 
