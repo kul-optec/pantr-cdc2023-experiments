@@ -31,7 +31,7 @@ endfunction()
 # Compile the CasADi problems
 foreach(N RANGE 1 60 1)
     generate_casadi_problem("quadcopter" "generate_problem.py" "ss2p" ${N})
-    # generate_casadi_problem("quadcopter" "generate_problem.py" "ss2" ${N})
+    generate_casadi_problem("quadcopter" "generate_problem.py" "ss2" ${N})
     generate_casadi_problem("hanging_chain" "generate_problem.py" "ss2p" ${N})
     # fails to compile (too big)
     # generate_casadi_problem("hanging_chain" "generate_problem.py" "ss2" ${N})
