@@ -54,8 +54,8 @@ class Problem(OCProblem):
 
         # Input constraints
         self.input_constr_box = (
-            np.array([atmin, -dtiltmax, -dtiltmax, -np.inf]),
-            np.array([atmax, +dtiltmax, +dtiltmax, +np.inf]),
+            np.array([atmin, -dtiltmax, -dtiltmax, -dtiltmax]),
+            np.array([atmax, +dtiltmax, +dtiltmax, +dtiltmax]),
         )
 
         # State constraints
