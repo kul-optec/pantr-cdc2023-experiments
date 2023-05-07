@@ -2,6 +2,7 @@
 build
 .*cache
 __pycache__
+.doit.db.db
 
 # Virtual environments
 py*-venv*
@@ -24,4 +25,5 @@ a.out
 *.mp4
 
 # Experiment results
-/benchmarks-paper/output
+/benchmarks-paper/output*
+/new-benchmarks-paper/output
