@@ -155,8 +155,7 @@ MPCResults do_mpc_experiment(BenchmarkProblem &problem,
     // Initial solve
     bool warm_start = true;
     alpaqa::params::set_params(warm_start, "warm", extra_opts);
-    if (warm_start)
-        solver(u, y, z_l, z_u);
+    solver(u, y, z_l, z_u);
     // Simulate
     auto u_first = ss ? u.topRows(nu) : u.segment(nx, nu);
     x0           = dl_problem.simulate(x0, u_first);
@@ -216,6 +215,7 @@ MPCResults do_experiment_impl(BenchmarkProblem &problem,
                               std::span<const std::string_view> extra_opts) {
     auto solve = [&](rvec u, rvec y, const rvec &, const rvec &) {
         auto stats = solver(*problem.problem, u, y);
+        std::cerr << stats.status << '\n';
         return stats.status == alpaqa::SolverStatus::Converged
                    ? stats.elapsed_time
                    : -stats.elapsed_time;
@@ -313,9 +313,14 @@ void do_experiment(BenchmarkProblem &problem, BenchmarkProblem &dl_problem,
     auto rnd_str       = random_hex_string(std::random_device());
     auto suffix        = timestamp_str + '_' + rnd_str;
     auto results_name  = "results_" + suffix;
+    alpaqa::params::set_params(results_name, "results_name", extra_opts);
     std::cout << "results: " << suffix << std::endl;
     std::ofstream res_file{results_name + ".py"};
-    write_results(res_file, results);
+    if (res_file)
+        write_results(res_file, results);
+    else
+        std::cerr << "Unable to open results file "
+                  << std::quoted(results_name + ".py") << std::endl;
 }
 
 int main(int argc, char *argv[]) try {
