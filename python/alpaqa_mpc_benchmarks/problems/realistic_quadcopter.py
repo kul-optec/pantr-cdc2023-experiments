@@ -23,9 +23,9 @@ class Problem(OCProblem):
         self.input_var = input = cs.vertcat(at, ω)
         self.state_names = ["$p_x$", "$p_y$", "$p_z$",
                             "$v_x$", "$v_y$", "$v_z$",
-                            r"$\psi$", r"$\phi$", r"$\theta$"]
+                            r"$\phi$", r"$\theta$", r"$\psi$"]
         self.input_names = [r"$a_t$",
-                            r"$\omega_\psi$", r"$\omega_\phi$", r"$\omega_\theta$"]
+                            r"$\omega_\phi$", r"$\omega_\theta$", r"$\omega_\psi$"]
 
         ψ, φ, θ = orient[2], orient[0], orient[1]
         cψ, cφ, cθ = cs.cos(ψ), cs.cos(φ), cs.cos(θ)
