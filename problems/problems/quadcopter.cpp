@@ -111,8 +111,8 @@ struct QuadcopterModel {
         U_ub[1] = +conf.d_tilt_max;
         U_lb[2] = -conf.d_tilt_max;
         U_ub[2] = +conf.d_tilt_max;
-        U_lb[3] = -inf;
-        U_ub[3] = +inf;
+        U_lb[3] = -conf.d_tilt_max;
+        U_ub[3] = +conf.d_tilt_max;
 
         // State constraints
         std::vector constr_v{
