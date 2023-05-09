@@ -10,11 +10,6 @@ outname = sys.argv[2]
 N = int(sys.argv[4])
 names = sys.argv[5:]
 
-
-for key, name in map(lambda x: x.split(':', 1), names):
-    for i in range(Δ, N + 1, Δ):
-        print(name.format(i))
-
 all_results = {
     key: [load_results(outdir, name.format(i)) for i in range(Δ, N + 1, Δ)]
     for key, name in map(lambda x: x.split(':', 1), names)

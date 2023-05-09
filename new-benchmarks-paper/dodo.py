@@ -5,7 +5,7 @@ import os.path as osp
 Δ = 1
 TOL = 1e-8
 OUTPUT = "output"
-N = 50
+N = 60
 NUM_SIM = 60
 
 OPT_ALM = [
@@ -123,6 +123,34 @@ def task_perfplot():
             "targets": [osp.join(OUTPUT, name + "-med-runtimes.pdf")],
             "actions": [cmd + results],
         }
+
+def task_perfplot_cold_warm():
+    problem = "quadcopter"
+    deps = []
+    results = []
+    for warm in (True, False):
+        warm_str = "warm" if warm else "cold"
+        for solver in SOLVER_OPT:
+            for horizon in range(Δ, N+1, Δ):
+                outfile = problem_name(problem, warm, solver, horizon)
+                deps += [osp.join(OUTPUT, outfile + ".py")]
+            outfile = problem_name(problem, warm, solver, horizon='{}')
+            results += [f"{warm_str}:{SOLVER_NAMES[solver]}:{outfile}"]
+    name = f"mpc-{problem}-{NUM_SIM}-{solver}"
+    cmd = [
+        "python3",
+        "perfplot-cold-warm.py",
+        OUTPUT,
+        name,
+        str(Δ),
+        str(N),
+    ]
+    yield {
+        "name": name,
+        "file_dep": deps + ["perfplot-cold-warm.py"],
+        "targets": [osp.join(OUTPUT, name + "-avg-runtimes-quantiles-cold-warm.pdf")],
+        "actions": [cmd + results],
+    }
 
 
 # def task_trajplot():
