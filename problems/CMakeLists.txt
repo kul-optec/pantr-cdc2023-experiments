@@ -14,7 +14,8 @@ function(generate_casadi_problem problem pythonfile formulation horizon)
                             "${problem}" "${formulation}" "${horizon}"
                         BYPRODUCTS "${problem_name}.csv"
                         MAIN_DEPENDENCY "${pythonfile}")
-        add_library("${problem_name}" MODULE "${problem_name}.c")
+        add_library("${problem_name}" MODULE
+                    "${CMAKE_CURRENT_BINARY_DIR}/${problem_name}.c")
         set_target_properties("${problem_name}" PROPERTIES
                             PREFIX "" RELEASE_POSTFIX "" DEBUG_POSTFIX ""
                             RELWITHDEBINFO_POSTFIX "" MINSIZEREL_POSTFIX ""

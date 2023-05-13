@@ -1,5 +1,6 @@
 # Temporary build and cache folders
 build
+compiled-problems
 .*cache
 __pycache__
 .doit.db.db
@@ -26,4 +27,4 @@ a.out
 
 # Experiment results
 /benchmarks-paper/output*
-/new-benchmarks-paper/output
+/new-benchmarks-paper/output*
