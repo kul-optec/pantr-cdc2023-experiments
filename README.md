@@ -16,3 +16,19 @@ The source code of PANTR is available on the `pantr` branch of the alpaqa reposi
 # Run the benchmarks and export the figures
 cd benchmarks-paper; make -j$(($(nproc) / 2))
 ```
+
+---
+
+## Results
+
+### Hanging chain
+
+🚧 (in progress) 🚧
+
+### Simplified quadcopter
+
+🚧 (in progress) 🚧
+
+### Quadcopter
+
+🚧 (in progress) 🚧
