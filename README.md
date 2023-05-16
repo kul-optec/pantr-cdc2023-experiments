@@ -25,10 +25,28 @@ cd benchmarks-paper; make -j$(($(nproc) / 2))
 
 🚧 (in progress) 🚧
 
+**Average solver run times for different MPC horizons**  
+[Average solver run times and P5/P95 percentiles](images/mpc-hanging_chain-60-avg-runtimes-quantiles-cold-warm.pdf.svg)
+
+**Average solver run times for horizon 60**  
+[Solver run times per MPC time step](images/mpc-hanging_chain-60-runtimes-mpc-last-cold-warm.pdf.svg)
+
 ### Simplified quadcopter
 
 🚧 (in progress) 🚧
 
+**Average solver run times for different MPC horizons**  
+[Average solver run times and P5/P95 percentiles](images/mpc-quadcopter-60-avg-runtimes-quantiles-cold-warm.pdf.svg)
+
+**Average solver run times for horizon 60**  
+[Solver run times per MPC time step](images/mpc-quadcopter-60-runtimes-mpc-last-cold-warm.pdf.svg)
+
 ### Quadcopter
 
 🚧 (in progress) 🚧
+
+**Average solver run times for different MPC horizons**  
+[Average solver run times and P5/P95 percentiles](images/mpc-realistic_quadcopter-60-avg-runtimes-quantiles-cold-warm.pdf.svg)
+
+**Average solver run times for horizon 60**  
+[Solver run times per MPC time step](images/mpc-realistic_quadcopter-60-runtimes-mpc-last-cold-warm.pdf.svg)
