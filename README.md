@@ -4,7 +4,7 @@ This repository contains a set of benchmarks, including the ones used in the L-C
 
 ### PANTR source code
 
-The source code of PANTR is available on the `pantr` branch of the alpaqa repository, at <https://github.com/kul-optec/alpaqa/tree/pantr>.
+The source code of PANTR is available on the `develop` branch of the alpaqa repository, at <https://github.com/kul-optec/alpaqa/tree/develop>.
 
 ### Instructions (Linux only)
 
@@ -13,8 +13,10 @@ The source code of PANTR is available on the `pantr` branch of the alpaqa reposi
 ./scripts/get-dependencies.sh
 # Generate and compile the benchmark problems and the benchmark driver
 ./scripts/build-benchmarks.sh
+# Activate the virtual environment
+. ./.venv/bin/activate
 # Run the benchmarks and export the figures
-cd benchmarks-paper; make -j$(($(nproc) / 2))
+cd new-benchmarks-paper; doit -n$(($(nproc) / 2))
 ```
 
 ---
