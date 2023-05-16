@@ -4,7 +4,7 @@ set -e
 
 export LD_PRELOAD="$PWD/../toolchains/x86_64-centos7-linux-gnu/x-tools/x86_64-centos7-linux-gnu/x86_64-centos7-linux-gnu/lib64/libgfortran.so.5.0.0"
 problem_dir="$PWD/../build/problems/Release"
-problem_dir="$PWD/../compiled-problems"
+# problem_dir="$PWD/../compiled-problems"
 build_dir="$PWD/../build/drivers/Release"
 
 output="$1"; shift;
