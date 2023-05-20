@@ -50,8 +50,14 @@ $$
             \cos\psi \cos\theta & \cos\psi \sin\theta \sin\phi-\sin\psi \cos\phi & \cos\psi \sin\theta \cos\phi + \sin\psi \sin\phi \\
             \sin\psi \cos\theta & \sin\psi \sin\theta \sin\phi + \cos\psi \cos\phi & \sin\psi \sin\theta \cos\phi - \cos\psi \sin\phi \\
             -\sin\theta & \cos\theta \sin\phi & \cos\theta \cos\phi \\
-            \end{pmatrix} \begin{pmatrix} 0 \\ 0 \\ a_t \end{pmatrix} - \begin{pmatrix} 0 \\ 0 \\ g \end{pmatrix} \\
-            \begin{pmatrix} \dot \phi \\ \dot \theta \\ \dot \psi \end{pmatrix} &= \omega.
+            \end{pmatrix} \begin{pmatrix} 0 \\
+            0 \\
+            a_t \end{pmatrix} - \begin{pmatrix} 0 \\
+            0 \\
+            g \end{pmatrix} \\
+            \begin{pmatrix} \dot \phi \\
+            \dot \theta \\
+            \dot \psi \end{pmatrix} &= \omega.
         \end{aligned}
     \end{equation}
 $$
@@ -77,8 +83,14 @@ $$
             \cos \psi \cos \theta - \sin \phi \sin \psi \sin \theta & -\cos  \phi \sin \psi & \cos  \psi \sin \theta + \cos  \theta \sin \phi \sin \psi \\
             \cos  \theta \sin \psi + \cos  \psi \sin \phi \sin \theta & \cos  \phi \cos  \psi & \sin \psi \sin \theta - \cos  \psi \cos  \theta \sin \phi \\
             -\cos  \phi \sin \theta & \sin \phi & \cos \phi \cos \theta \\
-            \end{pmatrix} \begin{pmatrix} 0 \\ 0 \\ a_t \end{pmatrix} - \begin{pmatrix} 0 \\ 0 \\ g \end{pmatrix} \\
-            \begin{pmatrix} \dot \phi \\ \dot \theta \\ \dot \psi \end{pmatrix} &= \begin{pmatrix}
+            \end{pmatrix} \begin{pmatrix} 0 \\
+            0 \\
+            a_t \end{pmatrix} - \begin{pmatrix} 0 \\
+            0 \\
+            g \end{pmatrix} \\
+            \begin{pmatrix} \dot \phi \\
+            \dot \theta \\
+            \dot \psi \end{pmatrix} &= \begin{pmatrix}
             \cos \theta & 0 & -\cos \phi \sin \theta \\
             0 & 1 & \sin \phi \\
             \sin \theta & 0 & \cos \phi \cos \theta \\
