@@ -40,6 +40,7 @@ Model dynamics from [1].
 [`quadcopter.py`](python/alpaqa_mpc_benchmarks/problems/quadcopter.py)
 
 Model dynamics:
+
 $$
     \begin{equation}
         \begin{aligned}
@@ -65,7 +66,8 @@ $$
 
 [`realistic_quadcopter.py`](python/alpaqa_mpc_benchmarks/problems/realistic_quadcopter.py)
 
-Model dynamics from [2]: 
+Model dynamics from [2]:
+
 $$
     \begin{equation}
         \begin{aligned}
